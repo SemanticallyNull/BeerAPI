@@ -39,6 +39,7 @@ class Beer {
     foreach($rows as $row) {
       $data[] = self::normalisePublicData($row);
     }
+    shuffle($data);
     return $data;
   }
   
