@@ -82,8 +82,7 @@ img.beer {
 }
 
 .beerdisplay {
-  float:left;
-  width:60%;
+  width:40%;
   margin:auto;
 }
 .beerdisplay:after {
