@@ -83,12 +83,8 @@ img.beer {
 
 .beerdisplay {
   float:left;
-}
-.bdhome {
-  width:50%;
-}
-.bdbeer {
-  width:100%;
+  width:60%;
+  margin:auto;
 }
 .beerdisplay:after {
   content:" ";
