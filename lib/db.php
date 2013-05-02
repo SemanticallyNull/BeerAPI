@@ -9,7 +9,11 @@ class DB {
   
   function getDb() {
     if(!$this->_db) {
-      $this->_db = new PDO('mysql:host='.$_SERVER['DB_HOST'].';dbname='.$_SERVER['DB_NAME'],$_SERVER['DB_USER'],$_SERVER['DB_PASS']);
+      if(!isset($_SERVER['DB_HOST'])) {
+        $this->_db = new PDO('mysql:host=localhost;dbname=beerapi','root');
+      } else {
+        $this->_db = new PDO('mysql:host='.$_SERVER['DB_HOST'].';dbname='.$_SERVER['DB_NAME'],$_SERVER['DB_USER'],$_SERVER['DB_PASS']);
+      }
     }
     return $this->_db;
   }
