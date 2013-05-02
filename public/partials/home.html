@@ -1,0 +1,21 @@
+<!-- Jumbotron -->
+<div class="jumbotron">
+  <h1>Get Beer Info</h1>
+  <p class="lead">Just scan your beer to get some more information about it:</p>
+  <input type="text" ng-model="query.barcode" placeholder="Scan your beer" id="scanbar" class="input-xlarge" onchange="this.value = ''"><br>
+</div>
+
+<div class="beerdisplay bdhome" ng-repeat="beer in beers | filter:query | orderBy:order">
+  <a href="#/beer/{{beer.barcode}}"><h2 class="beername">{{beer.name}}</h2></a>
+  <div class="beerimg">
+    <img ng-src="{{beer.image_url}}" class="beerimgimg">
+  </div>
+  <div class="beercontent">
+    <h3 class="beertypeabv">{{beer.type}} – {{beer.abv}}%</h3>
+    <p class="beerdesc">{{beer.description}}</p>
+  </div>
+</div>
+
+<div id="failedread">
+  <h1>Beer not found, or barcode read incorrectly.</h>
+</div>
