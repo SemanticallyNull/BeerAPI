@@ -21,9 +21,12 @@ respond('/', function($request) {
     include BASEDIR.'/public/privateview.php';
   }
 });
-
 respond('/beers?', function($request,$response,$app) {
   $beers = BeerIntent::getAllPublic($app->db);
+  $response->json($beers);
+});
+respond('/popular', function($request,$response,$app) {
+  $beers = BeerIntent::popular($app->db);
   $response->json($beers);
 });
 respond('/beers?/[:barcode]/[:action]?/[:number]?', function($request,$response,$app) {

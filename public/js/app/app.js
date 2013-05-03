@@ -2,6 +2,7 @@ var app = angular.module('beercheck', []);
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {templateUrl: 'partials/publichome.html', controller: BeerListCtrl}).
+      when('/popular', {templateUrl: 'partials/popular.html', controller: PopularListCtrl}).
       when('/scaninfo', {templateUrl: 'partials/home.html', controller: BeerCtrl}).
       when('/beer/:beerId', {templateUrl: 'partials/beer.html', controller: BeerCtrl}).
       when('/scanlog', {templateUrl: 'partials/take.html', controller: BeerTakeCtrl}).

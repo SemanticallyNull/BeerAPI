@@ -27,8 +27,12 @@ class BeerIntent extends Beer {
     $barcode = (int) $this->barcode;
     $this->fridge_count += $num;
     $this->db->query('UPDATE `beers` SET `fridge_count` = `fridge_count` + '.$num.' WHERE `barcode` = '.$barcode);
-    $this->db->query('INSERT INTO `log` SET `beer_barcode`='.$barcode.', `action`=\'take\', `number`='.$num.', `timestamp`=NOW()');
+    $this->db->query('INSERT INTO `log` SET `beer_barcode`='.$barcode.', `action`=\'add\', `number`='.$num.', `timestamp`=NOW()');
     return $this->getPublicData();
+  }
+  
+  public static function popular($db) {
+    return $db->query("SELECT `beers`.`name`, SUM(`number`) as 'count' FROM `log` JOIN `beers` ON `beer_barcode` = `beers`.`barcode` WHERE `action` = 'take' GROUP BY `barcode` ORDER BY SUM(`number`) DESC")->fetchAll(PDO::FETCH_ASSOC);
   }
   
 }

@@ -4,6 +4,11 @@ function BeerListCtrl($scope,$http,$location) {
     $scope.beers = data;
   });
 };
+function PopularListCtrl($scope,$http,$location) {
+  $http.get('/popular').success(function(data){
+    $scope.beers = data;
+  });
+};
 function BeerCtrl($scope,$http) {
   $scope.info = function() {
     if(this.beercode) {
