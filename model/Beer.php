@@ -24,12 +24,16 @@ class Beer {
   public function __construct(PDO $db, $barcode = false) {
     $this->db = $db;
     if($barcode) {
-      $query = $this->db->prepare('SELECT * FROM `beers` WHERE `barcode` = :barcode');
-      $query->execute(array(':barcode'=>(int)$barcode));
-      if($rows = $query->fetchObject()) {
-        foreach($rows as $key => $value) {
-          $this->$key = $value;
-        }
+      $this->fetch($barcode);
+    }
+  }
+  
+  public function update() {
+    $query = $this->db->prepare('SELECT * FROM `beers` WHERE `barcode` = :barcode');
+    $query->execute(array(':barcode'=>(int)$this->barcode));
+    if($rows = $query->fetchObject()) {
+      foreach($rows as $key => $value) {
+        $this->$key = $value;
       }
     }
   }
@@ -44,6 +48,7 @@ class Beer {
   }
   
   public function getPublicData() {
+    $this->fetch($this->barcode);
     $data = [
       "barcode" => (int) $this->barcode,
       "name" => $this->name,
@@ -53,7 +58,9 @@ class Beer {
       "abv" => (float) $this->abv,
       "description" => $this->description,
       "image_url" => $this->image_url,
-      "created_at" => $this->created_at
+      "created_at" => $this->created_at,
+      "fridge_count" => $this->fridge_count,
+      "total_count" => $this->total_count
     ];
     return $data;
   }
@@ -68,9 +75,15 @@ class Beer {
       "abv" => (float) $row->abv,
       "description" => $row->description,
       "image_url" => $row->image_url,
-      "created_at" => $row->created_at
+      "created_at" => $row->created_at,
+      "fridge_count" => $this->fridge_count,
+      "total_count" => $this->total_count
     ];
     return $data;
+  }
+  
+  public function save() {
+    
   }
 
 }
