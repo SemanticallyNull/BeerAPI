@@ -37,7 +37,6 @@ function BeerStockCtrl($scope,$http,$location) {
 function BeerStockAddCtrl($scope,$http,$location,$routeParams) {
   $http.get('/beer/'+$routeParams.barcode).success(function(data){
     $scope.beer = data;
-    $scope.beercode = "";
   });
   $scope.stock = function() {
     if(this.number) {
