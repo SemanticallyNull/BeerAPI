@@ -10,6 +10,7 @@ require_once BASEDIR.'/lib/db.php';
 require_once BASEDIR.'/autoloader.php';
 
 respond(function($request,$response,$app){
+  if($request->param('api_key') != md5("EYBeerApiIsAwesome")) die('API Key please!');
   $db = new DB();
   $app->db = $db->getDb();
 });
