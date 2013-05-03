@@ -1,4 +1,5 @@
-function BeerListCtrl($scope,$http) {
+function BeerListCtrl($scope,$http,$location) {
+  if(apikey !== '') { $location.path('/scaninfo') }
   $http.get('/beers').success(function(data){
     $scope.beers = data;
   });

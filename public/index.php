@@ -15,7 +15,11 @@ respond(function($request,$response,$app){
 });
 
 respond('/', function($request) {
-  include BASEDIR.'/public/publicview.php';
+  if($request->param('api_key') != md5("EYBeerApiIsAwesome")) {
+    include BASEDIR.'/public/publicview.php';
+  } else {
+    include BASEDIR.'/public/privateview.php';
+  }
 });
 
 respond('/beers?', function($request,$response,$app) {
