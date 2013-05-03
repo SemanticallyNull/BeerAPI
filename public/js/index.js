@@ -9,6 +9,7 @@ function BeerCtrl($scope,$http) {
     if(this.beercode) {
       $http.get('/beer/'+this.beercode).success(function(data){
         $scope.beer = data;
+        $scope.beercode = "";
       });
     }
   }
@@ -18,6 +19,7 @@ function BeerTakeCtrl($scope,$http,$routeParams) {
     if(this.beercode) {
       $http.get('/beer/'+this.beercode+'/take?api_key='+apikey).success(function(data){
         $scope.beer = data;
+        $scope.beercode = "";
       });
     }
   }
