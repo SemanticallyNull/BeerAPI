@@ -4,7 +4,7 @@
 </div>
 
 <div class="beerdisplay bdhome" ng-repeat="beer in beers | filter:query | orderBy:order" ng-show="beers[0]">
-  <a href="#/beer/{{beer.barcode}}"><h2 class="beername">{{beer.name}}</h2></a>
+  <h2 class="beername">{{beer.name}}</h2>
   <div class="beerimg">
     <img ng-src="{{beer.image_url}}" class="beerimgimg">
   </div>
