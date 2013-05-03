@@ -42,7 +42,7 @@ class Beer {
   }
   
   public static function getAllPublic(PDO $db) {
-    $rows = $db->query('SELECT * FROM `beers` WHERE `fridge_count` >= 1')->fetchAll(PDO::FETCH_OBJ);
+    $rows = $db->query('SELECT * FROM `beers` WHERE `total_count` >= 1')->fetchAll(PDO::FETCH_OBJ);
     foreach($rows as $row) {
       $data[] = self::normalisePublicData($row);
     }
