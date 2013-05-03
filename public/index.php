@@ -15,8 +15,8 @@ respond(function($request,$response,$app){
   $app->db = $db->getDb();
 });
 
-respond('/', function() {
-  include BASEDIR.'/public/index.html';
+respond('/', function($request) {
+  include BASEDIR.'/public/htmlview.php';
 });
 
 respond('/beers?', function($request,$response,$app) {
