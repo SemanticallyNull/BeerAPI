@@ -24,6 +24,7 @@ class Beer {
   public function __construct(PDO $db, $barcode = false) {
     $this->db = $db;
     if($barcode) {
+      $this->barcode = (int) $barcode;
       $this->update($barcode);
     }
   }
@@ -35,6 +36,8 @@ class Beer {
       foreach($rows as $key => $value) {
         $this->$key = $value;
       }
+    } else {
+      $this->barcode = false;
     }
   }
   
@@ -82,8 +85,4 @@ class Beer {
     return $data;
   }
   
-  public function save() {
-    
-  }
-
 }

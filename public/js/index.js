@@ -9,3 +9,16 @@ function BeerCtrl($scope,$http,$routeParams) {
     $scope.beer = data;
   });
 };
+function BeerTakeCtrl($scope,$http,$routeParams) {
+  var beerdata;
+  $http.get('/beers').success(function(data){
+    beerdata = data;
+  });
+  $scope.take = function() {
+    if(this.beercode) {
+      $http.get('/beer/'+this.beercode+'/take').success(function(data){
+        $scope.beer = data;
+      });
+    }
+  }
+};
