@@ -1,17 +1,19 @@
 <!-- Jumbotron -->
 <div class="jumbotron">
-  <h1>Get Beer Info</h1>
-  <p class="lead">Just type your beer's name to get some more information about it:</p>
-  <input type="text" ng-model="query.barcode" placeholder="Scan your beer" id="scanbar" class="input-xlarge" onchange="this.value='';"><br>
+  <h1>Scan your beer</h1>
+  <p class="lead">Please scan your beer to get more info on the beer</p>
+  <form ng-submit="info()">
+    <input type="text" ng-model="beercode" placeholder="Scan your beer" id="scanbar" class="input-xlarge"><br>
+  </form>
 </div>
 
-<div class="beerdisplay bdhome" ng-repeat="beer in beers | filter:query | orderBy:order">
-  <a href="#/beer/{{beer.barcode}}"><h2 class="beername">{{beer.name}}</h2></a>
+<div class="beerdisplay" ng-show="beer.name">
+  <h2 class="beername">{{beer.name}}</h2>
   <div class="beerimg">
     <img ng-src="{{beer.image_url}}" class="beerimgimg">
   </div>
   <div class="beercontent">
-    <h3 class="beertypeabv">{{beer.type}} – {{beer.abv}}%</h3>
+    <h3 class="beertypeabv">{{beer.type}} – {{beer.abv}}% - {{beer.fridge_count}} left</h3>
     <p class="beerdesc">{{beer.description}}</p>
   </div>
 </div>
