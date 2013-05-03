@@ -34,7 +34,7 @@
                 <ul class="nav">
                   <li><a href="#/scaninfo">Get Beer Info</a></li>
                   <li><a href="#/scanlog">Log</a></li>
-                  <li><a href="#">Stock Fridge</a></li>
+                  <li><a href="#/stock">Stock Fridge</a></li>
                 </ul>
               </div>
             </div>

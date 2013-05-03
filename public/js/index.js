@@ -24,3 +24,27 @@ function BeerTakeCtrl($scope,$http,$routeParams) {
     }
   }
 };
+function BeerStockCtrl($scope,$http,$location) {
+  $scope.stock = function() {
+    if(this.beercode) {
+      barcode = this.beercode
+      $http.get('/beer/'+barcode).success(function(data){
+          $location.path('/stock/'+data.barcode)
+      });
+    }
+  }
+};
+function BeerStockAddCtrl($scope,$http,$location,$routeParams) {
+  $http.get('/beer/'+$routeParams.barcode).success(function(data){
+    $scope.beer = data;
+    $scope.beercode = "";
+  });
+  $scope.stock = function() {
+    if(this.number) {
+      number = this.number;
+      $http.get('/beer/'+$routeParams.barcode+'/add/'+number+'?api_key='+apikey).success(function(data){
+          $scope.beer = data;
+      });
+    }
+  }
+};
