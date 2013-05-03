@@ -43,6 +43,9 @@ function BeerStockAddCtrl($scope,$http,$location,$routeParams) {
       number = this.number;
       $http.get('/beer/'+$routeParams.barcode+'/add/'+number+'?api_key='+apikey).success(function(data){
           $scope.beer = data;
+          setTimeout(function(){
+            $location.path('/stock')
+          },3000);
       });
     }
   }
