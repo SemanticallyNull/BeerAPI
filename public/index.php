@@ -29,7 +29,7 @@ respond('/beers?', function($request,$response,$app) {
 respond('/beers?/[:barcode]/[:action]?/[:number]?', function($request,$response,$app) {
   $beer_intent = new BeerIntent($app->db,$request->barcode);
   if(!$request->action) {
-    $response->json($beer_intent);
+    $response->json($beer_intent->getPublicData());
   } else {
     if($request->param('api_key') != md5("EYBeerApiIsAwesome")) die('API Key please!');
     $response->json($beer_intent->{$request->action}($request->number));
