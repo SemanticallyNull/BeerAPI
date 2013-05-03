@@ -76,8 +76,8 @@ class Beer {
       "description" => $row->description,
       "image_url" => $row->image_url,
       "created_at" => $row->created_at,
-      "fridge_count" => $this->fridge_count,
-      "total_count" => $this->total_count
+      "fridge_count" => $row->fridge_count,
+      "total_count" => $row->total_count
     ];
     return $data;
   }
