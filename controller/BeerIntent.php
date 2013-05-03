@@ -25,7 +25,6 @@ class BeerIntent extends Beer {
     if(!$this->barcode) return ['error'=>'Not a beer'];
     $num = (int) $num ?:1;
     $barcode = (int) $this->barcode;
-    if($this->fridge_count <= 0) return ['error'=>'We\'re out'];
     $this->fridge_count += $num;
     $this->db->query('UPDATE `beers` SET `fridge_count` = `fridge_count` + '.$num.' WHERE `barcode` = '.$barcode);
     $this->db->query('INSERT INTO `log` SET `beer_barcode`='.$barcode.', `action`=\'take\', `number`='.$num.', `timestamp`=NOW()');
