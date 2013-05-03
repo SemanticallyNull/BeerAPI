@@ -24,7 +24,7 @@ class Beer {
   public function __construct(PDO $db, $barcode = false) {
     $this->db = $db;
     if($barcode) {
-      $this->fetch($barcode);
+      $this->update($barcode);
     }
   }
   
@@ -48,7 +48,7 @@ class Beer {
   }
   
   public function getPublicData() {
-    $this->fetch($this->barcode);
+    $this->update($this->barcode);
     $data = [
       "barcode" => (int) $this->barcode,
       "name" => $this->name,
