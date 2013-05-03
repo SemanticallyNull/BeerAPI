@@ -3,7 +3,7 @@
   <h1>Scan your beer</h1>
   <p class="lead">Please scan your beer to get more info on the beer</p>
   <form ng-submit="info()">
-    <input type="text" ng-model="beercode" placeholder="Scan your beer" id="scanbar" class="input-xlarge"><br>
+    <input type="text" ng-model="beercode" placeholder="Scan your beer" id="scanbar" class="input-xlarge" xng-focus="true"><br>
   </form>
 </div>
 
@@ -17,7 +17,3 @@
     <p class="beerdesc">{{beer.description}}</p>
   </div>
 </div>
-
-<script>
-document.getElementById('scanbar').focus();
-</script>

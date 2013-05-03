@@ -1,5 +1,5 @@
-angular.module('beercheck', []).
-  config(['$routeProvider', function($routeProvider) {
+var app = angular.module('beercheck', []);
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {templateUrl: 'partials/publichome.html', controller: BeerListCtrl}).
       when('/scaninfo', {templateUrl: 'partials/home.html', controller: BeerCtrl}).
@@ -9,3 +9,12 @@ angular.module('beercheck', []).
       when('/stock/:barcode', {templateUrl: 'partials/stock-number.html', controller: BeerStockAddCtrl}).
       otherwise({redirectTo: '/'});
 }]);
+app.directive('xngFocus', function() {
+  return {
+    link: function(scope, elm, attrs) {
+      scope.$watch(attrs.xngFocus, function whenMyListChanges(newValue, oldValue) {
+        elm[0].focus();
+      });
+    }
+  };
+});

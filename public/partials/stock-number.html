@@ -3,7 +3,7 @@
   <h1>Number of beers</h1>
   <p class="lead">Please enter the number of beers you want to add to stock</p>
   <form ng-submit="stock()">
-    <input type="text" ng-model="number" placeholder="Number beers" id="scanbar" class="input-xlarge"><br>
+    <input type="text" ng-model="number" placeholder="Number beers" id="scanbar" class="input-xlarge" xng-focus="true"><br>
   </form>
 </div>
 
@@ -17,8 +17,3 @@
     <p class="beerdesc">{{beer.description}}</p>
   </div>
 </div>
-
-
-<script>
-document.getElementById('scanbar').focus();
-</script>
