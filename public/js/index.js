@@ -1,12 +1,12 @@
 function BeerListCtrl($scope,$http) {
-  $http.get('/beers?api_key='+apikey).success(function(data){
+  $http.get('/beers').success(function(data){
     $scope.beers = data;
   });
 };
 function BeerCtrl($scope,$http) {
   $scope.info = function() {
     if(this.beercode) {
-      $http.get('/beer/'+this.beercode+'?api_key='+apikey).success(function(data){
+      $http.get('/beer/'+this.beercode).success(function(data){
         $scope.beer = data;
       });
     }

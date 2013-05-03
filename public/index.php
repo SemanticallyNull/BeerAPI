@@ -10,13 +10,12 @@ require_once BASEDIR.'/lib/db.php';
 require_once BASEDIR.'/autoloader.php';
 
 respond(function($request,$response,$app){
-  if($request->param('api_key') != md5("EYBeerApiIsAwesome")) die('API Key please!');
   $db = new DB();
   $app->db = $db->getDb();
 });
 
 respond('/', function($request) {
-  include BASEDIR.'/public/htmlview.php';
+  include BASEDIR.'/public/publicview.php';
 });
 
 respond('/beers?', function($request,$response,$app) {
@@ -26,8 +25,9 @@ respond('/beers?', function($request,$response,$app) {
 respond('/beers?/[:barcode]/[:action]?/[:number]?', function($request,$response,$app) {
   $beer_intent = new BeerIntent($app->db,$request->barcode);
   if(!$request->action) {
-    $response->json($beer_intent->getPublicData());
+    $response->json($beer_intent);
   } else {
+    if($request->param('api_key') != md5("EYBeerApiIsAwesome")) die('API Key please!');
     $response->json($beer_intent->{$request->action}($request->number));
   }
 });
