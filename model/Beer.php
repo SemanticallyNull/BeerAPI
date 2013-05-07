@@ -83,7 +83,7 @@ class Beer {
       "created_at" => $row->created_at,
       "fridge_count" => (int) $row->fridge_count,
       "total_count" => (int) $row->total_count,
-			"display" => (bool) $this->display
+			"display" => (bool) $row->display
     ];
     return $data;
   }
