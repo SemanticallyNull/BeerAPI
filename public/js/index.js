@@ -46,22 +46,10 @@ function BeerStockAddCtrl($scope,$http,$location,$routeParams) {
   $scope.stock = function() {
     if(this.number) {
       number = this.number;
-	  	if(number < 100) {
       	$http.get('/beer/'+$routeParams.barcode+'/add/'+number+'?api_key='+apikey).success(function(data){
           $scope.beer = data;
           $location.path('/stock');
       	});
-	  	} else {
-	  		var confirm = confirm('Are you sure you want to stock '+number+' beers?');
-				if (confirm) {
-	      	$http.get('/beer/'+$routeParams.barcode+'/add/'+number+'?api_key='+apikey).success(function(data){
-	          $scope.beer = data;
-	          $location.path('/stock');
-	      	});
-				} else {
-					$scope.number = "";
-				}
-	  	}
     }
   }
 };
