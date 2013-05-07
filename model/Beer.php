@@ -19,6 +19,7 @@ class Beer {
   public $image_url;
   public $fridge_count;
   public $total_count;
+	public $display;
   public $created_at;
 
   public function __construct(PDO $db, $barcode = false) {
@@ -42,7 +43,7 @@ class Beer {
   }
   
   public static function getAllPublic(PDO $db) {
-    $rows = $db->query('SELECT * FROM `beers` WHERE `total_count` >= 1')->fetchAll(PDO::FETCH_OBJ);
+    $rows = $db->query('SELECT * FROM `beers` WHERE `display` = 1')->fetchAll(PDO::FETCH_OBJ);
     foreach($rows as $row) {
       $data[] = self::normalisePublicData($row);
     }
@@ -63,7 +64,8 @@ class Beer {
       "image_url" => $this->image_url,
       "created_at" => $this->created_at,
       "fridge_count" => (int) $this->fridge_count,
-      //"total_count" => (int) $this->total_count
+      "total_count" => (int) $this->total_count,
+			"display" => (bool) $this->display
     ];
     return $data;
   }
@@ -80,7 +82,8 @@ class Beer {
       "image_url" => $row->image_url,
       "created_at" => $row->created_at,
       "fridge_count" => (int) $row->fridge_count,
-      //"total_count" => (int) $row->total_count
+      "total_count" => (int) $row->total_count,
+			"display" => (bool) $this->display
     ];
     return $data;
   }
